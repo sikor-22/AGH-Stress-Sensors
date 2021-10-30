@@ -1,11 +1,5 @@
 # AGH-Stress-Sensors
 Repo for AGH Stress Concious project - Sensor "dept" (xd)
 
-**Requirements file name** : rq.txt
-
-> pip install -r rq.txt
-> >
-> > pip install <lib_name>
-> >
-> >pip freeze > rq.txt
-> >
+test_thread.cpp is main program executing on raspberryPi 0w to collect data
+> compile against pthread and lwiringPi
