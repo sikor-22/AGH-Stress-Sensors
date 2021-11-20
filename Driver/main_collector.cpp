@@ -45,7 +45,7 @@ int main(){
     std::thread InputListen(listen_on_stdin);
     if(retVal){
         run = false;
-        std::cout<<"Collecting Failed with error code: "<<retVal<<"\n";
+        std::cout<<"Collecting Failed with error code: "<<retVal<<" \n";
     }
     InputListen.join();
 }
