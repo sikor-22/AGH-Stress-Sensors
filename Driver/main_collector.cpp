@@ -19,8 +19,8 @@ int main_loop(){
     adc.setGain(GAIN_FOUR);
     adc.begin();
     while(run){
-        file_ekg.open("thread_test_ekg.txt", std::ios::out);
-        file_rest.open("thread_test_rest.txt", std::ios::out);
+        file_ekg.open("thread_test_ekg.txt", std::ios::app);
+        file_rest.open("thread_test_rest.txt", std::ios::app);
         if(!file_ekg.is_open() || !file_rest.is_open()){
             return 1;
         }
