@@ -23,7 +23,7 @@
 //#else
 // #include "WProgram.h"
 //#endif
-
+#pragma once
 //#include <Wire.h>
 #include <stdint.h>
 #include <stdio.h>
