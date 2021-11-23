@@ -18,6 +18,8 @@
 int main_loop(){
     adc.setGain(GAIN_FOUR);
     adc.begin();
+    std::cout<<"Collecting data... type q to stop\n";
+    std::thread InputListen(listen_on_stdin);
     while(run){
         file_ekg.open("thread_test_ekg.txt", std::ios::app);
         file_rest.open("thread_test_rest.txt", std::ios::app);
@@ -41,8 +43,7 @@ int main(){
     
     std::srand(std::time(nullptr));
     int retVal = main_loop();
-    std::cout<<"Collecting data... type q to stop\n";
-    std::thread InputListen(listen_on_stdin);
+    
     if(retVal){
         run = false;
         std::cout<<"Collecting Failed with error code: "<<retVal<<" \n";
