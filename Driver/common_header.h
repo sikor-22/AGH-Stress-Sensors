@@ -42,7 +42,7 @@ void collect_from_EKG(){
         adc_lock.lock();
             uint16_t data_EKG = adc.readADC_SingleEnded(EKG);
         adc_lock.unlock();
-        file_ekg << data_EKG << '\n';
+        file_ekg << elapsed.count() << "," << data_EKG << '\n';
         end = std::chrono::high_resolution_clock::now();
         elapsed = end-start;
     }    
@@ -56,7 +56,7 @@ void collect_everything_else(){
         adc_lock.lock();
             uint16_t data = adc.readADC_SingleEnded(GSR);
         adc_lock.unlock();
-        file_rest << data <<", ";
+        file_rest << elapsed.count() << "," << data <<", ";
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
         adc_lock.lock();
