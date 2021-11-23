@@ -16,8 +16,6 @@
 
 
 int main_loop(){
-    adc.setGain(GAIN_FOUR);
-    adc.begin();
     std::cout<<"Collecting data... type q to stop\n";
     std::thread InputListen(listen_on_stdin);
     while(run){
@@ -40,7 +38,10 @@ int main_loop(){
 int main(){
     adc.setGain(GAIN_FOUR);
     adc.begin();
-    
+    file_ekg.open("thread_test_ekg.txt", std::ios::out);
+    file_rest.open("thread_test_rest.txt", std::ios::out);
+    file_ekg.close();
+    file_rest.close();
     std::srand(std::time(nullptr));
     int retVal = main_loop();
     
