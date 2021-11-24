@@ -1,7 +1,6 @@
 #include <thread>
 #include <iostream>
-#include <sstream>
-#include <iomanip>
+
 #include <mutex>
 #include <string>
 #include <chrono>
@@ -43,13 +42,15 @@ int main_loop(){
 void create_files(){
     auto now  =  std::chrono::system_clock::now();
     auto in_time_t = std::chrono::system_clock::to_time_t(now);
-    std::stringstream ekg_filestream;
-    std::stringstream rest_filestream;
-    ekg_filestream<<std::put_time(std::localtime(&in_time_t), "EKG_%m%d%X");
-    rest_filestream<<std::put_time(std::localtime(&in_time_t), "Others_%m%d%X");
-    ekg_filename = ekg_filestream.str();
-    rest_filename = rest_filestream.str();
+    time(&in_time_t);
+    auto t = localtime(&in_time_t);
+    char buffer[80];
+    strftime(buffer, 80, "EKG_%m%d%_%I%M%S", t);
+    ekg_filename.assign(buffer);
+    strftime(buffer, 80, "Other_%m%d%_%I%M%S", t);
+    rest_filename.assign(buffer);
 }
+    
 
 int main(){
     adc.setGain(GAIN_FOUR);
