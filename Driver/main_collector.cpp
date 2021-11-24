@@ -22,6 +22,8 @@ int main_loop(){
         file_ekg.open("thread_test_ekg.txt", std::ios::app);
         file_rest.open("thread_test_rest.txt", std::ios::app);
         if(!file_ekg.is_open() || !file_rest.is_open()){
+            run = false;
+            InputListen.join();
             return 1;
         }
         std::thread EKG_thread(collect_from_EKG);
@@ -31,6 +33,7 @@ int main_loop(){
         file_ekg.close();
         file_rest.close();
     }
+    InputListen.join();
     return 0;
 }
 
@@ -49,5 +52,4 @@ int main(){
         run = false;
         std::cout<<"Collecting Failed with error code: "<<retVal<<" \n";
     }
-    InputListen.join();
 }
