@@ -45,7 +45,10 @@ void create_files(){
     auto in_time_t = std::chrono::system_clock::to_time_t(now);
     std::stringstream ekg_filestream;
     std::stringstream rest_filestream;
-    ekg_filestream<<std::put_time()
+    ekg_filestream<<std::put_time(std::localtime(&in_time_t), "EKG_%m%d%X");
+    rest_filestream<<std::put_time(std::localtime(&in_time_t), "Others_%m%d%X");
+    ekg_filename = ekg_filestream.str();
+    rest_filename = rest_filestream.str();
 }
 
 int main(){
