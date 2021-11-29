@@ -53,7 +53,7 @@ void create_files(){
     
 
 int main(){
-    adc.setGain(GAIN_FOUR);
+    adc.setGain(GAIN_ONE);
     adc.begin();
     file_ekg.open(ekg_filename, std::ios::out);
     file_rest.open(rest_filename, std::ios::out);
