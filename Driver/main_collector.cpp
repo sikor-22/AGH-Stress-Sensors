@@ -45,9 +45,9 @@ void create_files(){
     time(&in_time_t);
     auto t = localtime(&in_time_t);
     char buffer[80];
-    strftime(buffer, 80, "EKG_%m%d%_%I%M%S", t);
+    strftime(buffer, 80, "EKG_%m%d%_%I%M%S.txt", t);
     ekg_filename.assign(buffer);
-    strftime(buffer, 80, "Other_%m%d%_%I%M%S", t);
+    strftime(buffer, 80, "Other_%m%d%_%I%M%S.txt", t);
     rest_filename.assign(buffer);
 }
     
@@ -55,6 +55,7 @@ void create_files(){
 int main(){
     adc.setGain(GAIN_ONE);
     adc.begin();
+    create_files();
     file_ekg.open(ekg_filename, std::ios::out);
     file_rest.open(rest_filename, std::ios::out);
     file_ekg.close();
